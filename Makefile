@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/09/30 11:59:14 by ademurge         ###   ########.fr        #
+#    Updated: 2022/09/30 15:15:51 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ LIBFT		=	libft/ft_map_width.c \
 				libft/ft_putstr_fd.c \
 				libft/ft_putstr.c \
 				libft/ft_split.c \
+				libft/ft_strchr.c \
 				libft/ft_strdup.c \
 				libft/ft_strjoin.c \
 				libft/ft_strlcpy.c \

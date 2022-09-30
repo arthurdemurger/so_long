@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 12:21:21 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:19:14 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define DESTROY_BUTTON 17
 # define ESC 53
 # define KEYPRESS 2
+# define VALID_CHARACTERS "01EPC"
 
 /*
 ** Structures
@@ -84,6 +85,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putstr(char *s);
 char	**ft_split(char const *s, char c);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *src);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlcpy(char *dest, const char *src, int size);

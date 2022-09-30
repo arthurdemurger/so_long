@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 12:22:26 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:20:58 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	check_wall(t_data *map)
 		while (map->map[i][++j])
 		{
 			if (map->map[0][j] != '1' || map->map[map->width - 1][j] != '1')
+				ft_error("Invalid map.", map->map);
+			if (!ft_strchr(VALID_CHARACTERS, map->map[i][j]))
 				ft_error("Invalid map.", map->map);
 			c++;
 		}
