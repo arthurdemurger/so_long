@@ -2,3 +2,4 @@ a.out
 so_long
 .DS_Store
 *.swp
+.vscode/*
