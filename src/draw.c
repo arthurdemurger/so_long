@@ -6,15 +6,43 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 09:51:56 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:10:32 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	close_win(t_data *map)
+void	draw_block(t_game *game, int x, int y, char *file)
 {
-	mlx_destroy_window(map->mlx, map->win);
+	int	size;
+
+	size = SIZE_SQR;
+	game->map_sqr[y][x].img = mlx_xpm_file_to_image(game->mlx, file, &size,
+			&size);
+	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x].img,
+		x * 64, y * 64);
+}
+
+void	draw_sqr(t_game *game, char type, int x, int y)
+{
+	if (type == PLAYER)
+	{
+		draw_block(game, x, y, "xpm/steve.xpm");
+		game->player.img = game->map_sqr[y][x];
+	}
+	else if (game->map[y][x] == COLLECTIBLE)
+		draw_block(game, x, y, "xpm/coffre.xpm");
+	else if (game->map[y][x] == EXIT)
+		draw_block(game, x, y, "xpm/tnt.xpm");
+	else if (game->map[y][x] == WALL)
+		draw_block(game, x, y, "xpm/wall.xpm");
+	else
+		draw_block(game, x, y, "xpm/background.xpm");
+}
+
+int	close_win(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 }
 
@@ -26,7 +54,7 @@ void	pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *) dst = color;
 }
 
-void	draw_line(t_coord start, t_coord end, t_data *map)
+void	draw_line(t_coord start, t_coord end, t_img img)
 {
 	t_coord	delta;
 	t_coord	cur;
@@ -54,7 +82,7 @@ void	draw_line(t_coord start, t_coord end, t_data *map)
 		p = (2 * delta.y) - delta.x;
 		while (cur.x <= end.x)
 		{
-			pixel_put(&map->img, cur.x, cur.y, 0xFFC0CB);
+			pixel_put(img.img, cur.x, cur.y, 0xFFC0CB);
 			if (p < 0)
 			{
 				p += 2 * delta.y;
@@ -86,7 +114,7 @@ void	draw_line(t_coord start, t_coord end, t_data *map)
 		p = (2 * delta.x) - delta.y;
 		while (cur.y < end.y)
 		{
-			pixel_put(&map->img, cur.x, cur.y, 0xFFC0CB);
+			pixel_put(img.img, cur.x, cur.y, 0xFFC0CB);
 			if (p < 0)
 			{
 				p += 2 * delta.x;

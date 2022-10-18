@@ -6,11 +6,11 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 23:08:43 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 11:08:53 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:26:14 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/so_long.h"
 
 char	*gnl_free(char *s)
 {

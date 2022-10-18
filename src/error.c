@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:29:06 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 11:14:15 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:15:53 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	ft_error(char *type, char **map)
+void	ft_error(char *type, t_game *game)
 {
-	if (map)
-		free_map(map);
+	if (game && game->map)
+		free_map(game->map);
 	ft_putendl_fd(type, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

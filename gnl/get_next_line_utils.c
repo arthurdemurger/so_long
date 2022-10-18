@@ -6,11 +6,11 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:01:48 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 11:09:42 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:25:33 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/so_long.h"
 
 int	is_line_break(char *str)
 {

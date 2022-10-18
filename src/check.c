@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 15:20:58 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:06:04 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**read_file(char *file)
 	return (split);
 }
 
-void	check_pos(char **map)
+void	check_pos(t_game *game)
 {
 	int	p;
 	int	e;
@@ -52,60 +52,59 @@ void	check_pos(char **map)
 	e = 0;
 	i = -1;
 	c = 0;
-	while (map[++i])
+	while (game->map[++i])
 	{
 		j = -1;
-		while (map[i][++j])
+		while (game->map[i][++j])
 		{
-			if (map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 				p++;
-			if (map[i][j] == 'E')
+			if (game->map[i][j] == 'E')
 				e++;
-			if (map[i][j] == 'C')
+			if (game->map[i][j] == 'C')
 				c++;
 		}
 	}
 	if (!p || !e || p > 1 || e > 1 || !c)
-		ft_error("Invalid map.", map);
+		ft_error("Invalid map.", game);
 }
 
-void	check_wall(t_data *map)
+void	check_wall(t_game *game)
 {
 	int	i;
 	int	j;
 	int	c;
 
 	i = -1;
-	while (map->map[++i])
+	while (game->map[++i])
 	{
 		j = -1;
 		c = 0;
-		if (map->map[i][0] != '1' || map->map[i][map->length - 1] != '1')
-			ft_error("Invalid map.", map->map);
-		while (map->map[i][++j])
+		if (game->map[i][0] != '1' || game->map[i][game->length - 1] != '1')
+			ft_error("Invalid map.", game);
+		while (game->map[i][++j])
 		{
-			if (map->map[0][j] != '1' || map->map[map->width - 1][j] != '1')
-				ft_error("Invalid map.", map->map);
-			if (!ft_strchr(VALID_CHARACTERS, map->map[i][j]))
-				ft_error("Invalid map.", map->map);
+			if (game->map[0][j] != '1' || game->map[game->width - 1][j] != '1')
+				ft_error("Invalid map.", game);
+			if (!ft_strchr(VALID_CHARACTERS, game->map[i][j]))
+				ft_error("Invalid map.", game);
 			c++;
 		}
-		if (c != map->length)
-			ft_error("Invalid map.", map->map);
+		if (c != game->length)
+			ft_error("Invalid map.", game);
 	}
 }
 
-void	check(int ac, char **av, t_data *map)
+void	check(int ac, char **av, t_game *game)
 {
 	(void) av;
-	(void) map;
 	if (ac != 2)
 		ft_error("Wrong number of arguments ", NULL);
 	if (ft_strlen(ft_strstr(av[1], ".ber")) != 4)
 		ft_error("Wrong file extension ", NULL);
-	map->map = read_file(av[1]);
-	map->length = ft_strlen(map->map[0]);
-	map->width = ft_map_width(map->map);
-	check_pos(map->map);
-	check_wall(map);
+	game->map = read_file(av[1]);
+	game->length = ft_strlen(game->map[0]);
+	game->width = ft_map_width(game->map);
+	check_pos(game);
+	check_wall(game);
 }

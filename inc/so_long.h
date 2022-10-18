@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/09/30 15:19:14 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:31:36 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,36 @@
 */
 
 # include "../mlx/mlx.h"
-# include "../gnl/get_next_line.h"
+
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <math.h>
 
 /*
 ** Define constants
 */
 
+/* Keyboard */
+
+# define BUFFER_SIZE 42
 # define DESTROY_BUTTON 17
 # define ESC 53
 # define KEYPRESS 2
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define SIZE_SQR 64
 # define VALID_CHARACTERS "01EPC"
+# define FOUND 2
+# define OPEN 1
+# define CLOSED 0
+# define PLAYER 'P'
+# define WALL '1'
+# define EXIT 'E'
+# define COLLECTIBLE 'C'
 
 /*
 ** Structures
@@ -53,28 +69,47 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_data
+typedef struct player
 {
-	char	**map;
-	int		length;
-	int		width;
-	void	*mlx;
-	void	*win;
 	t_img	img;
-}	t_data;
+	t_coord pos;
+}	t_player;
+
+typedef struct exit
+{
+	t_coord pos;
+	int	status;
+} t_exit;
+typedef struct s_game
+{
+	t_player	player;
+	t_img		**map_sqr;
+	t_exit		exit;
+	char		**map;
+	int			length;
+	int			width;
+	int			nb_items;
+	void		*win;
+	void		*mlx;
+	int			sqr_size;
+}	t_game;
 
 /*
 ** so_long functions
 */
 
-void	check(int ac, char **av, t_data *map);
-int		close_win(t_data *map);
-void	controls(t_data *map);
-void	draw_line(t_coord start, t_coord end, t_data *map);
-void	ft_error(char *s, char **map);
-void	init_mlx(t_data *map);
-int		keypress(int keycode, t_data *map);
+void	check(int ac, char **av, t_game *game);
+int		close_win(t_game *game);
+void	controls(t_game *game);
+void	draw_background(t_game *game);
+void	draw_line(t_coord start, t_coord end, t_img img);
+void	draw_sqr(t_game *game, char type, int x, int y);
+void	free_map(char **map);
+void	ft_error(char *s, t_game *game);
+void	init_map_sqr(t_game *game);
+void	init_mlx(t_game *game);
 void	pixel_put(t_img *img, int x, int y, int color);
+void	start_game(t_game *game);
 
 /*
 ** libft functions
@@ -99,5 +134,10 @@ void	ft_swap(int *x, int *y);
 */
 
 char	*get_next_line(int fd);
+int		is_line_break(char *str);
+int		ft_strlen(char *s);
+char	*ft_strdup(char *src);
+char	*gnl_strjoin(char *s1, char *s2);
+char	*gnl_substr(char const *s, int start, int len);
 
 #endif

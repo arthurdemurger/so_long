@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/09/30 15:15:51 by ademurge         ###   ########.fr        #
+#    Updated: 2022/10/18 15:11:00 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ RESET		= $(shell tput -Txterm sgr0)
 SRC			=	src/check.c \
 				src/draw.c \
 				src/error.c \
-				src/init_mlx.c \
+				src/game.c \
+				src/init.c \
 				src/keyboard.c \
 				src/main.c
 
