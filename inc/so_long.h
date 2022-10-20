@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/18 15:31:36 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:37:41 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 */
 
 # include "../mlx/mlx.h"
-
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -32,7 +31,6 @@
 
 /* Keyboard */
 
-# define BUFFER_SIZE 42
 # define DESTROY_BUTTON 17
 # define ESC 53
 # define KEYPRESS 2
@@ -40,7 +38,14 @@
 # define A 0
 # define S 1
 # define D 2
+
+/* Sizing */
+
+# define BUFFER_SIZE 42
 # define SIZE_SQR 64
+
+/* Characters */
+
 # define VALID_CHARACTERS "01EPC"
 # define FOUND 2
 # define OPEN 1
@@ -48,7 +53,20 @@
 # define PLAYER 'P'
 # define WALL '1'
 # define EXIT 'E'
-# define COLLECTIBLE 'C'
+# define ITEM 'C'
+# define BACKGROUND '0'
+# define UP 0
+# define DOWN 1
+# define LEFT 2
+# define RIGHT 3
+
+/* XPM files */
+
+# define PLAYER_XPM "xpm/steve.xpm"
+# define ITEM_XPM "xpm/coffre.xpm"
+# define EXIT_XPM "xpm/tnt.xpm"
+# define WALL_XPM "xpm/wall.xpm"
+# define BACKGROUND_XPM "xpm/background.xpm"
 
 /*
 ** Structures
@@ -103,11 +121,13 @@ int		close_win(t_game *game);
 void	controls(t_game *game);
 void	draw_background(t_game *game);
 void	draw_line(t_coord start, t_coord end, t_img img);
+void	draw_map(t_game *game);
 void	draw_sqr(t_game *game, char type, int x, int y);
 void	free_map(char **map);
 void	ft_error(char *s, t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);
+void	move_player(t_game *game, int new_x, int new_y);
 void	pixel_put(t_img *img, int x, int y, int color);
 void	start_game(t_game *game);
 

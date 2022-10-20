@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:06:00 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/18 11:22:20 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:33:45 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av)
 
 	check(ac, av, &game);
 	start_game(&game);
-	controls(&game);
 	mlx_put_image_to_window(game.mlx, game.win, game.map, 0, 0);
 	mlx_loop(game.mlx);
 	return (0);

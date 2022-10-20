@@ -6,11 +6,38 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/18 15:36:09 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:38:24 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	replace_sqr(t_game *game, int x, int y, char *xpm_file)
+{
+	int	size;
+
+	size = SIZE_SQR;
+	mlx_destroy_image(game->mlx, game->map_sqr[y][x].img);
+	game->map_sqr[y][x].img = mlx_xpm_file_to_image(game->mlx, xpm_file,
+			&size, &size);
+	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x].img,
+		x * 64, y * 64);
+}
+
+void	move_player(t_game *game, int new_x, int new_y)
+{
+	int	x;
+	int	y;
+
+	x = game->player.pos.x;
+	y = game->player.pos.y;
+	replace_sqr(game, x, y, BACKGROUND_XPM);
+	replace_sqr(game, new_x, new_y, PLAYER_XPM);
+	game->map[y][x] = BACKGROUND;
+	game->map[new_y][new_x] = PLAYER;
+	game->player.pos.x = new_x;
+	game->player.pos.y = new_y;
+}
 
 t_coord	init_game(t_game *game)
 {
@@ -28,8 +55,8 @@ t_coord	init_game(t_game *game)
 		{
 			if (game->map[i][j] == 'P')
 			{
-				pos.x = i;
-				pos.y = j;
+				pos.x = j;
+				pos.y = i;
 			}
 			if (game->map[i][j] == 'C')
 				game->nb_items++;
@@ -37,20 +64,6 @@ t_coord	init_game(t_game *game)
 	}
 	game->sqr_size = 64;
 	return (pos);
-}
-
-void	draw_map(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (game->map[++i])
-	{
-		j = -1;
-		while (game->map[i][++j])
-			draw_sqr(game, game->map[i][j], j, i);
-	}
 }
 
 void	start_game(t_game *game)
