@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/18 16:06:04 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:55:45 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,30 @@ char	**read_file(char *file)
 
 void	check_pos(t_game *game)
 {
-	int	p;
-	int	e;
-	int	c;
+	int	nb_player;
+	int	nb_exit;
+	int	nb_item;
 	int	i;
 	int	j;
 
-	p = 0;
-	e = 0;
+	nb_player = 0;
+	nb_exit = 0;
 	i = -1;
-	c = 0;
+	nb_item = 0;
 	while (game->map[++i])
 	{
 		j = -1;
 		while (game->map[i][++j])
 		{
-			if (game->map[i][j] == 'P')
-				p++;
-			if (game->map[i][j] == 'E')
-				e++;
-			if (game->map[i][j] == 'C')
-				c++;
+			if (game->map[i][j] == PLAYER)
+				nb_player++;
+			if (game->map[i][j] == EXIT)
+				nb_exit++;
+			if (game->map[i][j] == ITEM)
+				nb_item++;
 		}
 	}
-	if (!p || !e || p > 1 || e > 1 || !c)
+	if (!nb_player || !nb_exit || nb_player > 1 || nb_exit > 1 || !nb_item)
 		ft_error("Invalid map.", game);
 }
 
@@ -80,11 +80,12 @@ void	check_wall(t_game *game)
 	{
 		j = -1;
 		c = 0;
-		if (game->map[i][0] != '1' || game->map[i][game->length - 1] != '1')
+		if (game->map[i][0] != WALL || game->map[i][game->length - 1] != WALL)
 			ft_error("Invalid map.", game);
 		while (game->map[i][++j])
 		{
-			if (game->map[0][j] != '1' || game->map[game->width - 1][j] != '1')
+			if (game->map[0][j] != WALL ||
+				game->map[game->width - 1][j] != WALL)
 				ft_error("Invalid map.", game);
 			if (!ft_strchr(VALID_CHARACTERS, game->map[i][j]))
 				ft_error("Invalid map.", game);

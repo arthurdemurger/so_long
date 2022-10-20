@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:17:03 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 11:38:34 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:52:00 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	keypress(int keycode, t_game *game)
 	if (keycode == ESC)
 		close_win(game);
 	else if (keycode == W)
-		move_or_not(game, game->player.pos.x, game->player.pos.y - 1);
+		move_or_not(game, game->player_pos.x, game->player_pos.y - 1);
 	else if (keycode == S)
-		move_or_not(game, game->player.pos.x, game->player.pos.y + 1);
+		move_or_not(game, game->player_pos.x, game->player_pos.y + 1);
 	else if (keycode == A)
-		move_or_not(game, game->player.pos.x - 1, game->player.pos.y);
+		move_or_not(game, game->player_pos.x - 1, game->player_pos.y);
 	else if (keycode == D)
-		move_or_not(game, game->player.pos.x + 1, game->player.pos.y);
+		move_or_not(game, game->player_pos.x + 1, game->player_pos.y);
 	return (0);
 }
 

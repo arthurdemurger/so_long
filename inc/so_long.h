@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 11:37:41 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:50:04 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,10 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct player
-{
-	t_img	img;
-	t_coord pos;
-}	t_player;
-
-typedef struct exit
-{
-	t_coord pos;
-	int	status;
-} t_exit;
 typedef struct s_game
 {
-	t_player	player;
+	t_coord		player_pos;
 	t_img		**map_sqr;
-	t_exit		exit;
 	char		**map;
 	int			length;
 	int			width;
