@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 11:50:04 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:38:58 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <math.h>
+# include <stdarg.h>
 
 /*
 ** Define constants
@@ -38,6 +38,10 @@
 # define A 0
 # define S 1
 # define D 2
+# define KEY_UP 126
+# define KEY_LEFT 123
+# define KEY_DOWN 125
+# define KEY_RIGHT 124
 
 /* Sizing */
 
@@ -59,6 +63,10 @@
 # define DOWN 1
 # define LEFT 2
 # define RIGHT 3
+# define MV_UP "up   "
+# define MV_DOWN "down "
+# define MV_RIGHT "right"
+# define MV_LEFT "left "
 
 /* XPM files */
 
@@ -98,6 +106,7 @@ typedef struct s_game
 	void		*win;
 	void		*mlx;
 	int			sqr_size;
+	int			nb_move;
 }	t_game;
 
 /*
@@ -115,7 +124,7 @@ void	free_map(char **map);
 void	ft_error(char *s, t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);
-void	move_player(t_game *game, int new_x, int new_y);
+void	move_player(t_game *game, int new_x, int new_y, char *direction);
 void	pixel_put(t_img *img, int x, int y, int color);
 void	start_game(t_game *game);
 
@@ -147,5 +156,28 @@ int		ft_strlen(char *s);
 char	*ft_strdup(char *src);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*gnl_substr(char const *s, int start, int len);
+
+/*
+** ft_printf
+*/
+
+/* constants */
+
+# define DECIMAL "0123456789"
+# define UP_HEXADECIMAL "0123456789ABCDEF"
+# define LOW_HEXADECIMAL "0123456789abcdef"
+# define SIGNED 1
+# define UNSIGNED 0
+
+/* functions */
+
+int		ft_printf(const char *str, ...);
+void	printf_putchar(char c, int *count);
+void	printf_putstr(char *str, int *count);
+void	printf_putnbr(int n, int *count);
+void	printf_putnbr_base(int nbr, int sign, char *base_set, int *count);
+int		is_conversion(char c);
+void	do_conversion(char c, va_list args, int *count);
+void	ft_print_address(void *add, int *count);
 
 #endif

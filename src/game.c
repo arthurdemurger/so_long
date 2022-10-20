@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 11:54:48 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:39:47 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	replace_sqr(t_game *game, int x, int y, char *xpm_file)
 		x * 64, y * 64);
 }
 
-void	move_player(t_game *game, int new_x, int new_y)
+void	move_player(t_game *game, int new_x, int new_y, char *direction)
 {
 	int	x;
 	int	y;
@@ -34,6 +34,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 	game->map[new_y][new_x] = PLAYER;
 	game->player_pos.x = new_x;
 	game->player_pos.y = new_y;
+	ft_printf("Move %s |  Total of moves : %i\n", direction, ++game->nb_move);
 }
 
 t_coord	init_game(t_game *game)
@@ -59,6 +60,7 @@ t_coord	init_game(t_game *game)
 		}
 	}
 	game->sqr_size = 64;
+	game->nb_move = 0;
 	return (pos);
 }
 

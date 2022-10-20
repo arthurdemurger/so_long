@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/10/19 23:08:30 by ademurge         ###   ########.fr        #
+#    Updated: 2022/10/20 15:25:42 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,12 @@ LIBFT		=	libft/ft_map_width.c \
 				libft/ft_substr.c \
 				libft/ft_swap.c
 
+FT_PRINTF	=	ft_printf/ft_conversion.c \
+				ft_printf/ft_print_memory.c \
+				ft_printf/ft_printf_utils.c \
+				ft_printf/ft_printf.c \
+				ft_printf/ft_putnbr_base.c
+
 NAME		= so_long
 
 CFLAGS		= -Wall -Wextra -Werror -L ./mlx -lmlx -framework OpenGL -framework AppKit
@@ -52,7 +58,7 @@ CFLAGS		= -Wall -Wextra -Werror -L ./mlx -lmlx -framework OpenGL -framework AppK
 all:		$(NAME)
 
 $(NAME):
-			@gcc ${CFLAGS} ${SRC} ${GNL} ${LIBFT} -o ${NAME}
+			@gcc ${CFLAGS} ${SRC} ${GNL} ${LIBFT} ${FT_PRINTF} -o ${NAME}
 			@echo "$(GREEN)********** Compiled. $(RESET)"
 
 clean:
