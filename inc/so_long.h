@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 15:38:58 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:42:37 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@
 
 /* XPM files */
 
-# define PLAYER_XPM "xpm/steve.xpm"
-# define ITEM_XPM "xpm/coffre.xpm"
-# define EXIT_XPM "xpm/tnt.xpm"
+# define PLAYER_XPM "xpm/player.xpm"
+# define ITEM_XPM "xpm/item.xpm"
+# define EXIT_XPM "xpm/exit.xpm"
 # define WALL_XPM "xpm/wall.xpm"
 # define BACKGROUND_XPM "xpm/background.xpm"
 
