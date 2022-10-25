@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 11:55:29 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:35:24 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_sqr(t_game *game, char type, int x, int y)
 	else if (game->map[y][x] == ITEM)
 		draw_block(game, x, y, ITEM_XPM);
 	else if (game->map[y][x] == EXIT)
-		draw_block(game, x, y, EXIT_XPM);
+		draw_block(game, x, y, CLOSED_EXIT_XPM);
 	else if (game->map[y][x] == WALL)
 		draw_block(game, x, y, WALL_XPM);
 	else

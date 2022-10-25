@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 11:55:45 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:25:28 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	check_wall(t_game *game)
 
 void	check(int ac, char **av, t_game *game)
 {
-	(void) av;
 	if (ac != 2)
 		ft_error("Wrong number of arguments ", NULL);
 	if (ft_strlen(ft_strstr(av[1], ".ber")) != 4)

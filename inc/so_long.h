@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 15:42:37 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:02:06 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@
 
 # define PLAYER_XPM "xpm/player.xpm"
 # define ITEM_XPM "xpm/item.xpm"
-# define EXIT_XPM "xpm/exit.xpm"
+# define OPEN_EXIT_XPM "xpm/open_exit.xpm"
+# define CLOSED_EXIT_XPM "xpm/closed_exit.xpm"
 # define WALL_XPM "xpm/wall.xpm"
 # define BACKGROUND_XPM "xpm/background.xpm"
 
@@ -98,7 +99,9 @@ typedef struct s_img
 typedef struct s_game
 {
 	t_coord		player_pos;
+	t_coord		exit_pos;
 	t_img		**map_sqr;
+	int			exit_status;
 	char		**map;
 	int			length;
 	int			width;
@@ -114,24 +117,26 @@ typedef struct s_game
 */
 
 void	check(int ac, char **av, t_game *game);
-int		close_win(t_game *game);
 void	controls(t_game *game);
 void	draw_background(t_game *game);
 void	draw_line(t_coord start, t_coord end, t_img img);
 void	draw_map(t_game *game);
 void	draw_sqr(t_game *game, char type, int x, int y);
+int		end_game(t_game *game, int type_exit);
 void	free_map(char **map);
 void	ft_error(char *s, t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);
 void	move_player(t_game *game, int new_x, int new_y, char *direction);
 void	pixel_put(t_img *img, int x, int y, int color);
+void	replace_sqr(t_game *game, int x, int y, char *xpm_file);
 void	start_game(t_game *game);
 
 /*
 ** libft functions
 */
 
+t_coord	ft_find_pos(t_game *game, char block);
 int		ft_map_width(char **map);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);

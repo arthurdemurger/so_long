@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/10/20 15:25:42 by ademurge         ###   ########.fr        #
+#    Updated: 2022/10/25 16:58:00 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,17 @@ RESET		= $(shell tput -Txterm sgr0)
 
 SRC			=	src/check.c \
 				src/draw.c \
-				src/error.c \
+				src/exit.c \
 				src/game.c \
-				src/init.c \
 				src/keyboard.c \
-				src/main.c
+				src/main.c \
+				src/utils.c
 
 GNL			=	gnl/get_next_line.c \
 				gnl/get_next_line_utils.c
 
-LIBFT		=	libft/ft_map_width.c \
+LIBFT		=	libft/ft_find_pos.c \
+				libft/ft_map_width.c \
 				libft/ft_putendl_fd.c \
 				libft/ft_putstr_fd.c \
 				libft/ft_putstr.c \

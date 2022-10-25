@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/20 15:39:47 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:41:00 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_coord	init_game(t_game *game)
 	}
 	game->sqr_size = 64;
 	game->nb_move = 0;
+	game->exit_status = CLOSED;
 	return (pos);
 }
 
