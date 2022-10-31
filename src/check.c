@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 13:26:25 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:12:27 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ char	**read_file(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_error("Open error.", NULL);
-	tmp = get_next_line(fd);
-	if (!tmp)
+	join = get_next_line(fd);
+	if (!join || join[0] == '\n')
 		ft_error("Invalid map.", NULL);
-	join = tmp;
 	tmp = get_next_line(fd);
 	while (tmp)
 	{
-		join = ft_strjoin(join, tmp);
+		if (tmp[0] == '\n')
+			ft_error("Invalid map", NULL);
+		join = gnl_strjoin(join, tmp);
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
@@ -66,7 +67,7 @@ void	check_pos(t_game *game)
 		}
 	}
 	if (!nb_player || !nb_exit || nb_player > 1 || nb_exit > 1 || !nb_item)
-		ft_error("Error", game);
+		ft_error("Invalid map", game);
 }
 
 void	check_wall(t_game *game)
@@ -81,18 +82,18 @@ void	check_wall(t_game *game)
 		j = -1;
 		c = 0;
 		if (game->map[i][0] != WALL || game->map[i][game->length - 1] != WALL)
-			ft_error("Error", game);
+			ft_error("Invalid map", game);
 		while (game->map[i][++j])
 		{
 			if (game->map[0][j] != WALL ||
 				game->map[game->width - 1][j] != WALL)
-				ft_error("Error", game);
+				ft_error("Invalid map", game);
 			if (!ft_strchr(VALID_CHARACTERS, game->map[i][j]))
-				ft_error("Error", game);
+				ft_error("Invalid map", game);
 			c++;
 		}
 		if (c != game->length)
-			ft_error("Error", game);
+			ft_error("Invalid map", game);
 	}
 }
 

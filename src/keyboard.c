@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:17:03 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/25 17:14:52 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:54:57 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	move_or_not(t_game *game, int x, int y, char *direction)
 		if (!game->nb_items && game->exit_status == CLOSED)
 		{
 			game->exit_pos = ft_find_pos(game, EXIT);
-			replace_sqr(game, game->exit_pos.x, game->exit_pos.y, OPEN_EXIT_XPM);
+			replace_sqr(game, game->exit_pos.x, game->exit_pos.y,
+				OPEN_EXIT_XPM);
 			game->exit_status = OPEN;
 		}
 	}

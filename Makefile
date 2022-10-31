@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/10/25 16:58:00 by ademurge         ###   ########.fr        #
+#    Updated: 2022/10/31 17:17:03 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ LIBFT		=	libft/ft_find_pos.c \
 				libft/ft_strchr.c \
 				libft/ft_strdup.c \
 				libft/ft_strjoin.c \
+				libft/ft_strlcat.c \
 				libft/ft_strlcpy.c \
 				libft/ft_strlen.c \
 				libft/ft_strstr.c \
@@ -54,7 +55,7 @@ FT_PRINTF	=	ft_printf/ft_conversion.c \
 
 NAME		= so_long
 
-CFLAGS		= -Wall -Wextra -Werror -L ./mlx -lmlx -framework OpenGL -framework AppKit
+CFLAGS		= -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
 
 all:		$(NAME)
 
