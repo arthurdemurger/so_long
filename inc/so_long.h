@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/25 17:02:06 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:42:39 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@
 # define MV_DOWN "down "
 # define MV_RIGHT "right"
 # define MV_LEFT "left "
+# define YES 1
+# define NO 0
 
 /* XPM files */
 
@@ -89,27 +91,28 @@ typedef struct s_coord
 
 typedef struct s_img
 {
-	void	*img;
 	char	*addr;
 	int		bits_per_pix;
-	int		line_length;
 	int		endian;
+	void	*img;
+	int		line_length;
 }	t_img;
 
 typedef struct s_game
 {
-	t_coord		player_pos;
 	t_coord		exit_pos;
-	t_img		**map_sqr;
 	int			exit_status;
-	char		**map;
+	int			is_mlx;
 	int			length;
-	int			width;
-	int			nb_items;
-	void		*win;
+	t_img		**map_sqr;
+	char		**map;
 	void		*mlx;
-	int			sqr_size;
+	int			nb_items;
 	int			nb_move;
+	t_coord		player_pos;
+	int			sqr_size;
+	int			width;
+	void		*win;
 }	t_game;
 
 /*
@@ -123,7 +126,6 @@ void	draw_line(t_coord start, t_coord end, t_img img);
 void	draw_map(t_game *game);
 void	draw_sqr(t_game *game, char type, int x, int y);
 int		end_game(t_game *game, int type_exit);
-void	free_map(char **map);
 void	ft_error(char *s, t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);

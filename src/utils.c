@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:06:29 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/25 16:57:23 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:32:52 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_mlx(t_game *game)
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->length * 64, game->width * 64,
 			"map 42 - ademurge");
+	game->is_mlx = YES;
 }
 
 void	init_map_sqr(t_game *game)

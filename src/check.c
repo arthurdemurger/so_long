@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/25 17:25:28 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:26:25 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	check_pos(t_game *game)
 		}
 	}
 	if (!nb_player || !nb_exit || nb_player > 1 || nb_exit > 1 || !nb_item)
-		ft_error("Invalid map.", game);
+		ft_error("Error", game);
 }
 
 void	check_wall(t_game *game)
@@ -81,25 +81,26 @@ void	check_wall(t_game *game)
 		j = -1;
 		c = 0;
 		if (game->map[i][0] != WALL || game->map[i][game->length - 1] != WALL)
-			ft_error("Invalid map.", game);
+			ft_error("Error", game);
 		while (game->map[i][++j])
 		{
 			if (game->map[0][j] != WALL ||
 				game->map[game->width - 1][j] != WALL)
-				ft_error("Invalid map.", game);
+				ft_error("Error", game);
 			if (!ft_strchr(VALID_CHARACTERS, game->map[i][j]))
-				ft_error("Invalid map.", game);
+				ft_error("Error", game);
 			c++;
 		}
 		if (c != game->length)
-			ft_error("Invalid map.", game);
+			ft_error("Error", game);
 	}
 }
 
 void	check(int ac, char **av, t_game *game)
 {
+	game->is_mlx = NO;
 	if (ac != 2)
-		ft_error("Wrong number of arguments ", NULL);
+		ft_error("Wrong number of arguments", NULL);
 	if (ft_strlen(ft_strstr(av[1], ".ber")) != 4)
 		ft_error("Wrong file extension ", NULL);
 	game->map = read_file(av[1]);
