@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 18:48:40 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 19:12:53 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	replace_sqr(t_game *game, int x, int y, char *xpm_file)
 
 void	move_or_not(t_game *game, int x, int y, char *direction)
 {
-	if (game->map[y][x] == WALL)
-		return ;
-	else if (game->map[y][x] == BACKGROUND)
+	if (game->map[y][x] == BACKGROUND)
 		move_player(game, x, y, direction);
 	else if (game->map[y][x] == EXIT && game->exit_status == OPEN)
 	{
