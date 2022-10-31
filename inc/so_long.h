@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 17:17:24 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 18:43:25 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@
 /* Sizing */
 
 # define BUFFER_SIZE 42
-# define SIZE_SQR 64
+# define SIZE_SQR 80
 
 /* Characters */
 
-# define VALID_CHARACTERS "01EPC"
+# define VALID_CHARACTERS "01EGPC"
 # define FOUND 2
 # define OPEN 1
 # define CLOSED 0
@@ -62,6 +62,7 @@
 # define WALL '1'
 # define EXIT 'E'
 # define ITEM 'C'
+# define GHOST 'G'
 # define BACKGROUND '0'
 # define UP 0
 # define DOWN 1
@@ -76,11 +77,15 @@
 
 /* XPM files */
 
-# define PLAYER_XPM "xpm/player.xpm"
+# define PL_DOWN_XPM "xpm/pl_down.xpm"
+# define PL_UP_XPM "xpm/pl_up.xpm"
+# define PL_LEFT_XPM "xpm/pl_left.xpm"
+# define PL_RIGHT_XPM "xpm/pl_right.xpm"
 # define ITEM_XPM "xpm/item.xpm"
 # define OPEN_EXIT_XPM "xpm/open_exit.xpm"
 # define CLOSED_EXIT_XPM "xpm/closed_exit.xpm"
 # define WALL_XPM "xpm/wall.xpm"
+# define GHOST_XPM "xpm/ghost.xpm"
 # define BACKGROUND_XPM "xpm/background.xpm"
 
 /*
@@ -131,8 +136,10 @@ void	draw_map(t_game *game);
 void	draw_sqr(t_game *game, char type, int x, int y);
 int		end_game(t_game *game, int type_exit);
 void	ft_error(char *s, t_game *game);
+t_coord	init_game(t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);
+void	move_or_not(t_game *game, int x, int y, char *direction);
 void	move_player(t_game *game, int new_x, int new_y, char *direction);
 void	pixel_put(t_img *img, int x, int y, int color);
 void	replace_sqr(t_game *game, int x, int y, char *xpm_file);
@@ -149,6 +156,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putstr(char *s);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
+int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(char *src);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlcat(char *dest, char *src, int size);

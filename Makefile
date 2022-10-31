@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/10/31 17:17:03 by ademurge         ###   ########.fr        #
+#    Updated: 2022/10/31 18:24:13 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ WHITE		= $(shell tput -Txterm setaf 7)
 RESET		= $(shell tput -Txterm sgr0)
 
 SRC			=	src/check.c \
+				src/controls.c \
 				src/draw.c \
 				src/exit.c \
 				src/game.c \
-				src/keyboard.c \
-				src/main.c \
-				src/utils.c
+				src/init.c \
+				src/main.c
 
 GNL			=	gnl/get_next_line.c \
 				gnl/get_next_line_utils.c
@@ -38,6 +38,7 @@ LIBFT		=	libft/ft_find_pos.c \
 				libft/ft_putstr.c \
 				libft/ft_split.c \
 				libft/ft_strchr.c \
+				libft/ft_strcmp.c \
 				libft/ft_strdup.c \
 				libft/ft_strjoin.c \
 				libft/ft_strlcat.c \
