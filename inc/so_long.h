@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 11:42:39 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:17:24 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** Libraries
 */
 
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -28,6 +28,10 @@
 /*
 ** Define constants
 */
+
+/* Debug */
+
+# define ICI printf("ici\n");
 
 /* Keyboard */
 
@@ -147,6 +151,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *src);
 char	*ft_strjoin(char *s1, char *s2);
+int		ft_strlcat(char *dest, char *src, int size);
 int		ft_strlcpy(char *dest, const char *src, int size);
 int		ft_strlen(char *str);
 char	*ft_strstr(char *big, char *little);

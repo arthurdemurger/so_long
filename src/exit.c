@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:29:06 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 11:42:54 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:18:20 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,12 @@ void	free_map(t_game *game)
 
 void	ft_error(char *type, t_game *game)
 {
-	ft_putendl_fd(type, STDERR_FILENO);
+	char	*join;
+
+	join = "Error : ";
+	join = ft_strjoin(join, type);
+	ft_putendl_fd(join, STDERR_FILENO);
+	free(join);
 	end_game(game, EXIT_FAILURE);
 }
 

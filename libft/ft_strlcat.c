@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 17:42:08 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 17:14:16 by ademurge         ###   ########.fr       */
+/*   Created: 2022/10/31 17:15:28 by ademurge          #+#    #+#             */
+/*   Updated: 2022/10/31 17:17:17 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+int	ft_strlcat(char *dest, char *src, int size)
 {
-	char	*dst;
-	int		size;
+	int	i;
+	int	j;
+	int	size_dest;
+	int	size_src;
 
-	if (!s1 || !s2)
-		return (NULL);
-	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	dst = (char *)malloc(sizeof(char) * size);
-	if (!dst)
-		ft_error("Malloc error", NULL);
-	ft_strlcpy(dst, (char *)s1, ft_strlen(s1) + 1);
-	ft_strlcat(dst, (char *)s2, ft_strlen(s2) + ft_strlen(s1) + 1);
-	return (dst);
+	size_dest = ft_strlen(dest);
+	size_src = ft_strlen(src);
+	if (size_dest > size || !src || !dest)
+		return (size_src + size);
+	j = 0;
+	i = size_dest;
+	while (src[j] && i + 1 < size)
+		dest[i++] = src[j++];
+	dest[i] = 0;
+	return (size_src + size_dest);
 }
