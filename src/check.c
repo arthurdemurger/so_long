@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 17:12:27 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:54:33 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,18 @@ void	check_wall(t_game *game)
 	{
 		j = -1;
 		c = 0;
-		if (game->map[i][0] != WALL || game->map[i][game->length - 1] != WALL)
+		if (game->map[i][0] != WALL || game->map[i][game->width - 1] != WALL)
 			ft_error("Invalid map", game);
 		while (game->map[i][++j])
 		{
 			if (game->map[0][j] != WALL ||
-				game->map[game->width - 1][j] != WALL)
+				game->map[game->height - 1][j] != WALL)
 				ft_error("Invalid map", game);
 			if (!ft_strchr(VALID_CHARACTERS, game->map[i][j]))
 				ft_error("Invalid map", game);
 			c++;
 		}
-		if (c != game->length)
+		if (c != game->width)
 			ft_error("Invalid map", game);
 	}
 }
@@ -105,8 +105,8 @@ void	check(int ac, char **av, t_game *game)
 	if (ft_strlen(ft_strstr(av[1], ".ber")) != 4)
 		ft_error("Wrong file extension ", NULL);
 	game->map = read_file(av[1]);
-	game->length = ft_strlen(game->map[0]);
-	game->width = ft_map_width(game->map);
+	game->width = ft_strlen(game->map[0]);
+	game->height = ft_map_height(game->map);
 	check_pos(game);
 	check_wall(game);
 }

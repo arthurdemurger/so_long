@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 22:06:00 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/01 19:32:13 by ademurge         ###   ########.fr       */
+/*   Created: 2022/11/01 19:40:53 by ademurge          #+#    #+#             */
+/*   Updated: 2022/11/01 19:42:15 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	main(int ac, char **av)
+void	ft_putnbr(int n)
 {
-	t_game	game;
+	long	ln;
 
-	check(ac, av, &game);
-	start_game(&game);
-	return (0);
+	ln = n;
+	if (n < 0)
+	{
+		ln *= -1;
+		ft_putchar('-');
+	}
+	if (ln > 9)
+		ft_putnbr(ln / 10);
+	ft_putchar(ln % 10 + 48);
 }

@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 18:44:37 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 00:04:56 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ void	draw_map(t_game *game)
 		while (game->map[i][++j])
 			draw_sqr(game, game->map[i][j], j, i);
 	}
+	//game->hide_str = mlx_new_image(game->mlx, game->width - SZ_NB_MOVE_STR, 22);
+	//mlx_new_image()
+	//mlx_put_image_to_window(game->mlx, game->win, game->hide_str, SZ_NB_MOVE_STR,
+	//	game->height * SIZE_SQR);
+	mlx_string_put(game->mlx, game->win, 0, game->height * SIZE_SQR + 23,
+		0xFFFFFF, "Total number of moves : 0");
 }

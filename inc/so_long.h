@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 18:43:25 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 00:23:39 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 ** Libraries
 */
 
-# include <mlx.h>
+//# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -51,6 +52,7 @@
 
 # define BUFFER_SIZE 42
 # define SIZE_SQR 80
+# define SZ_NB_MOVE_STR 240
 
 /* Characters */
 
@@ -104,15 +106,16 @@ typedef struct s_img
 	int		bits_per_pix;
 	int		endian;
 	void	*img;
-	int		line_length;
+	int		line_width;
 }	t_img;
 
 typedef struct s_game
 {
 	t_coord		exit_pos;
 	int			exit_status;
+	void		*hide_str;
 	int			is_mlx;
-	int			length;
+	int			width;
 	t_img		**map_sqr;
 	char		**map;
 	void		*mlx;
@@ -120,7 +123,7 @@ typedef struct s_game
 	int			nb_move;
 	t_coord		player_pos;
 	int			sqr_size;
-	int			width;
+	int			height;
 	void		*win;
 }	t_game;
 
@@ -150,8 +153,11 @@ void	start_game(t_game *game);
 */
 
 t_coord	ft_find_pos(t_game *game, char block);
-int		ft_map_width(char **map);
+char	*ft_itoa(int n);
+int		ft_map_height(char **map);
+void	ft_putchar(char c);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr(int n);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putstr(char *s);
 char	**ft_split(char const *s, char c);

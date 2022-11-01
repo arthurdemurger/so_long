@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/10/31 18:24:13 by ademurge         ###   ########.fr        #
+#    Updated: 2022/11/01 23:54:19 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,11 @@ GNL			=	gnl/get_next_line.c \
 				gnl/get_next_line_utils.c
 
 LIBFT		=	libft/ft_find_pos.c \
-				libft/ft_map_width.c \
+				libft/ft_itoa.c \
+				libft/ft_map_height.c \
+				libft/ft_putchar.c \
 				libft/ft_putendl_fd.c \
+				libft/ft_putnbr.c \
 				libft/ft_putstr_fd.c \
 				libft/ft_putstr.c \
 				libft/ft_split.c \
@@ -56,7 +59,7 @@ FT_PRINTF	=	ft_printf/ft_conversion.c \
 
 NAME		= so_long
 
-CFLAGS		= -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+CFLAGS		= -Wall -Wextra -Werror -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 all:		$(NAME)
 

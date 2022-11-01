@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 22:06:00 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/01 19:32:13 by ademurge         ###   ########.fr       */
+/*   Created: 2022/11/01 19:41:19 by ademurge          #+#    #+#             */
+/*   Updated: 2022/11/01 19:42:01 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	main(int ac, char **av)
+void	ft_putchar(char c)
 {
-	t_game	game;
-
-	check(ac, av, &game);
-	start_game(&game);
-	return (0);
+	write(1, &c, 1);
 }

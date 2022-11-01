@@ -6,11 +6,24 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 19:12:53 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 00:01:52 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	put_nb_moves(t_game *game, char *direction)
+{
+	char	*tmp;
+//	t_img	img_tmp;
+
+
+	ft_printf("Move %s |  Total number of moves : %i\n", direction, ++game->nb_move);
+	tmp = ft_itoa(game->nb_move);
+	mlx_string_put(game->mlx, game->win, SZ_NB_MOVE_STR, game->height * SIZE_SQR,
+		 0xFFFFFF, tmp);
+	free(tmp);
+}
 
 void	replace_sqr(t_game *game, int x, int y, char *xpm_file)
 {
@@ -25,11 +38,6 @@ void	move_or_not(t_game *game, int x, int y, char *direction)
 {
 	if (game->map[y][x] == BACKGROUND)
 		move_player(game, x, y, direction);
-	else if (game->map[y][x] == EXIT && game->exit_status == OPEN)
-	{
-		ft_printf("*******   YOU WIN   *******\n");
-		end_game(game, EXIT_SUCCESS);
-	}
 	else if (game->map[y][x] == ITEM)
 	{
 		game->nb_items--;
@@ -42,6 +50,11 @@ void	move_or_not(t_game *game, int x, int y, char *direction)
 			game->exit_status = OPEN;
 		}
 	}
+	else if (game->map[y][x] == EXIT && game->exit_status == OPEN)
+	{
+		ft_printf("*******   YOU WIN   *******\n");
+		end_game(game, EXIT_SUCCESS);
+	}
 	else if (game->map[y][x] == GHOST)
 	{
 		ft_printf("*******   GAME OVER   *******\n");
@@ -51,8 +64,8 @@ void	move_or_not(t_game *game, int x, int y, char *direction)
 
 void	move_player(t_game *game, int new_x, int new_y, char *direction)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	x = game->player_pos.x;
 	y = game->player_pos.y;
@@ -69,7 +82,7 @@ void	move_player(t_game *game, int new_x, int new_y, char *direction)
 	game->map[new_y][new_x] = PLAYER;
 	game->player_pos.x = new_x;
 	game->player_pos.y = new_y;
-	ft_printf("Move %s |  Total of moves : %i\n", direction, ++game->nb_move);
+	put_nb_moves(game, direction);
 }
 
 void	start_game(t_game *game)
@@ -78,5 +91,5 @@ void	start_game(t_game *game)
 	init_map_sqr(game);
 	game->player_pos = init_game(game);
 	draw_map(game);
-	controls (game);
+	controls(game);
 }

@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:06:29 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 18:24:22 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:54:33 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_coord	init_game(t_game *game)
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->length * 80, game->width * 80,
+	game->win = mlx_new_window(game->mlx, game->width * 80, game->height * 80 + 23,
 			"map 42 - ademurge");
 	game->is_mlx = YES;
 }
@@ -52,8 +52,9 @@ void	init_map_sqr(t_game *game)
 {
 	int	i;
 
-	game->map_sqr = malloc(sizeof(t_img *) * (game->width + 1));
+	game->map_sqr = malloc(sizeof(t_img *) * (game->height + 1));
 	i = -1;
-	while (++i < game->width)
-		game->map_sqr[i] = malloc (sizeof(t_img) * (game->length + 1));
+	while (++i < game->height)
+		game->map_sqr[i] = malloc (sizeof(t_img) * (game->width + 1));
+	game->map_sqr[i] = NULL;
 }

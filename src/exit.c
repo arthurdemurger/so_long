@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:29:06 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 17:18:20 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:54:33 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ void	free_map_sqr(t_game *game)
 	int	j;
 
 	i = -1;
-	while (++i < game->width)
+	while (++i < game->height)
 	{
 		j = -1;
-		while (++j < game->length)
+		while (++j < game->width)
+		{
 			mlx_destroy_image(game->mlx, game->map_sqr[i][j].img);
+		}
+		free(game->map_sqr[i]);
 	}
+	free(game->map_sqr);
 }
 
 void	free_map(t_game *game)
@@ -39,12 +43,8 @@ void	free_map(t_game *game)
 
 void	ft_error(char *type, t_game *game)
 {
-	char	*join;
-
-	join = "Error : ";
-	join = ft_strjoin(join, type);
-	ft_putendl_fd(join, STDERR_FILENO);
-	free(join);
+	write(STDERR_FILENO, "Error\n", 6);
+	ft_putendl_fd(type, STDERR_FILENO);
 	end_game(game, EXIT_FAILURE);
 }
 
@@ -54,8 +54,8 @@ int	end_game(t_game *game, int type_exit)
 	{
 		if (game->is_mlx == YES)
 		{
-			mlx_destroy_window(game->mlx, game->win);
 			free_map_sqr(game);
+			mlx_destroy_window(game->mlx, game->win);
 		}
 		free_map(game);
 	}
