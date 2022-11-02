@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 14:59:19 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:23:41 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	replace_sqr(t_game *game, int x, int y, char *xpm_file)
 	game->map_sqr[y][x].img = mlx_xpm_file_to_image(game->mlx, xpm_file,
 			&game->sqr_size, &game->sqr_size);
 	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x].img,
-		x * 80, y * 80);
+		x * SIZE_SQR, y * SIZE_SQR);
 }
 
 void	move_or_not(t_game *game, int x, int y, char *direction)

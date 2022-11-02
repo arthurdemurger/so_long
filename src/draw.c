@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 14:58:54 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:23:32 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_block(t_game *game, int x, int y, char *file)
 	game->map_sqr[y][x].img = mlx_xpm_file_to_image(game->mlx, file,
 			&game->sqr_size, &game->sqr_size);
 	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x].img,
-		x * 80, y * 80);
+		x * SIZE_SQR, y * SIZE_SQR);
 }
 
 void	draw_sqr(t_game *game, char type, int x, int y)
