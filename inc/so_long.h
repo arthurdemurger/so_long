@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 15:09:42 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:24:12 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@
 
 # define BUFFER_SIZE 42
 # define SIZE_SQR 80
-# define SZ_NB_MOVE_STR 240
 
 /* Characters */
 
 # define VALID_CHARACTERS "01EGPC"
-# define FOUND 2
 # define OPEN 1
 # define CLOSED 0
 # define PLAYER 'P'
