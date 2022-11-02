@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 14:19:42 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:09:42 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,18 @@
 
 /* XPM files */
 
-# define PL_DOWN_XPM "xpm/pl_down.xpm"
-# define PL_UP_XPM "xpm/pl_up.xpm"
-# define PL_LEFT_XPM "xpm/pl_left.xpm"
-# define PL_RIGHT_XPM "xpm/pl_right.xpm"
-# define ITEM_XPM "xpm/item.xpm"
-# define OPEN_EXIT_XPM "xpm/open_exit.xpm"
-# define CLOSED_EXIT_XPM "xpm/closed_exit.xpm"
-# define WALL_XPM "xpm/wall.xpm"
-# define GHOST_XPM "xpm/ghost.xpm"
-# define BACKGROUND_XPM "xpm/background.xpm"
-# define LOSE_XPM "xpm/game_over.xpm"
-# define WIN_XPM "xpm/you_win.xpm"
+# define PL_DOWN_XPM "files/xpm/pl_down.xpm"
+# define PL_UP_XPM "files/xpm/pl_up.xpm"
+# define PL_LEFT_XPM "files/xpm/pl_left.xpm"
+# define PL_RIGHT_XPM "files/xpm/pl_right.xpm"
+# define ITEM_XPM "files/xpm/item.xpm"
+# define OPEN_EXIT_XPM "files/xpm/open_exit.xpm"
+# define CLOSED_EXIT_XPM "files/xpm/closed_exit.xpm"
+# define WALL_XPM "files/xpm/wall.xpm"
+# define GHOST_XPM "files/xpm/ghost.xpm"
+# define BACKGROUND_XPM "files/xpm/background.xpm"
+# define LOSE_XPM "files/xpm/game_over.xpm"
+# define WIN_XPM "files/xpm/you_win.xpm"
 
 /*
 ** Structures
