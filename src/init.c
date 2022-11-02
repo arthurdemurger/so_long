@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:06:29 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/01 23:54:33 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:06:08 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ t_coord	init_game(t_game *game)
 	game->sqr_size = 80;
 	game->nb_move = 0;
 	game->exit_status = CLOSED;
+	game->is_game_over = NO;
 	return (pos);
 }
 
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->width * 80, game->height * 80 + 23,
-			"map 42 - ademurge");
+	game->win = mlx_new_window(game->mlx, game->width * SIZE_SQR,
+			game->height * SIZE_SQR, "map 42 - ademurge");
 	game->is_mlx = YES;
 }
 

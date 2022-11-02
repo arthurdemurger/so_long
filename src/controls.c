@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:17:03 by ademurge          #+#    #+#             */
-/*   Updated: 2022/10/31 18:22:42 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:03:34 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	keypress(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		end_game(game, EXIT_SUCCESS);
+	else if (game->is_game_over == YES)
+		return (0);
 	else if (keycode == W || keycode == KEY_UP)
 		move_or_not(game, game->player_pos.x, game->player_pos.y - 1, MV_UP);
 	else if (keycode == S || keycode == KEY_DOWN)

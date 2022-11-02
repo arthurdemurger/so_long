@@ -6,11 +6,52 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 00:04:56 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:58:54 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+t_coord	find_pos(t_game *game)
+{
+	t_coord	pos;
+
+	if ((game->width - 3) % 2 != 0)
+		pos.x = (SIZE_SQR * (game->width - 3)) / 2;
+	else
+		pos.x = ((game->width - 3) / 2) * SIZE_SQR;
+	if (game->height % 2 == 0)
+		pos.y = (SIZE_SQR * (game->height - 1)) / 2;
+	else
+		pos.y = (game->height / 2) * SIZE_SQR;
+	return (pos);
+}
+
+void	draw_end(t_game *game, int type_end)
+{
+	void	*end;
+	int		height;
+	int		width;
+
+	height = SIZE_SQR;
+	width = SIZE_SQR * 3;
+	game->is_game_over = YES;
+	mlx_clear_window(game->mlx, game->win);
+	if (type_end == WIN)
+	{
+		end = mlx_xpm_file_to_image(game->mlx, WIN_XPM, &height, &width);
+		mlx_put_image_to_window(game->mlx, game->win, end, find_pos(game).x,
+			find_pos(game).y);
+		mlx_destroy_image(game->mlx, end);
+	}
+	else if (type_end == LOSE)
+	{
+		end = mlx_xpm_file_to_image(game->mlx, LOSE_XPM, &height, &width);
+		mlx_put_image_to_window(game->mlx, game->win, end, find_pos(game).x,
+			find_pos(game).y);
+		mlx_destroy_image(game->mlx, end);
+	}
+}
 
 void	draw_block(t_game *game, int x, int y, char *file)
 {
@@ -48,10 +89,6 @@ void	draw_map(t_game *game)
 		while (game->map[i][++j])
 			draw_sqr(game, game->map[i][j], j, i);
 	}
-	//game->hide_str = mlx_new_image(game->mlx, game->width - SZ_NB_MOVE_STR, 22);
-	//mlx_new_image()
-	//mlx_put_image_to_window(game->mlx, game->win, game->hide_str, SZ_NB_MOVE_STR,
-	//	game->height * SIZE_SQR);
-	mlx_string_put(game->mlx, game->win, 0, game->height * SIZE_SQR + 23,
-		0xFFFFFF, "Total number of moves : 0");
+	mlx_string_put(game->mlx, game->win, 0, 0, 0xFFFFFF,
+		"Total number of moves : 0");
 }

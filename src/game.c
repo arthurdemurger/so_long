@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 00:01:52 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:59:19 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void	put_nb_moves(t_game *game, char *direction)
 {
 	char	*tmp;
-//	t_img	img_tmp;
 
-
-	ft_printf("Move %s |  Total number of moves : %i\n", direction, ++game->nb_move);
-	tmp = ft_itoa(game->nb_move);
-	mlx_string_put(game->mlx, game->win, SZ_NB_MOVE_STR, game->height * SIZE_SQR,
-		 0xFFFFFF, tmp);
+	tmp = ft_itoa(++game->nb_move);
+	ft_printf("Move %s |  Total number of moves : %i\n", direction,
+		game->nb_move);
+	mlx_destroy_image(game->mlx, game->map_sqr[0][3].img);
+	game->map_sqr[0][3].img = mlx_xpm_file_to_image(game->mlx, WALL_XPM,
+			&game->sqr_size, &game->sqr_size);
+	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[0][3].img,
+		SIZE_SQR * 3, 0);
+	mlx_string_put(game->mlx, game->win, SIZE_SQR * 3, 0, 0xFFFFFF, tmp);
 	free(tmp);
 }
 
@@ -53,12 +56,12 @@ void	move_or_not(t_game *game, int x, int y, char *direction)
 	else if (game->map[y][x] == EXIT && game->exit_status == OPEN)
 	{
 		ft_printf("*******   YOU WIN   *******\n");
-		end_game(game, EXIT_SUCCESS);
+		draw_end(game, WIN);
 	}
 	else if (game->map[y][x] == GHOST)
 	{
 		ft_printf("*******   GAME OVER   *******\n");
-		end_game(game, EXIT_SUCCESS);
+		draw_end(game, LOSE);
 	}
 }
 

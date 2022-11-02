@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 00:23:39 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:19:42 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 ** Libraries
 */
 
-//# include <mlx.h>
-# include "../mlx/mlx.h"
+# include <mlx.h>
+//# include "../mlx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -76,6 +76,8 @@
 # define MV_LEFT "left "
 # define YES 1
 # define NO 0
+# define WIN 0
+# define LOSE 1
 
 /* XPM files */
 
@@ -89,6 +91,8 @@
 # define WALL_XPM "xpm/wall.xpm"
 # define GHOST_XPM "xpm/ghost.xpm"
 # define BACKGROUND_XPM "xpm/background.xpm"
+# define LOSE_XPM "xpm/game_over.xpm"
+# define WIN_XPM "xpm/you_win.xpm"
 
 /*
 ** Structures
@@ -115,6 +119,7 @@ typedef struct s_game
 	int			exit_status;
 	void		*hide_str;
 	int			is_mlx;
+	int			is_game_over;
 	int			width;
 	t_img		**map_sqr;
 	char		**map;
@@ -134,6 +139,7 @@ typedef struct s_game
 void	check(int ac, char **av, t_game *game);
 void	controls(t_game *game);
 void	draw_background(t_game *game);
+void	draw_end(t_game *game, int type_end);
 void	draw_line(t_coord start, t_coord end, t_img img);
 void	draw_map(t_game *game);
 void	draw_sqr(t_game *game, char type, int x, int y);
