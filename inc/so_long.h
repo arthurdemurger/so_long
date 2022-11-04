@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/04 18:32:37 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:54:56 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@
 # define WALL_XPM "files/xpm/wall.xpm"
 # define GHOST_XPM "files/xpm/ghost.xpm"
 # define BACKGROUND_XPM "files/xpm/background.xpm"
-# define LOSE_XPM "files/xpm/game_over.xpm"
-# define WIN_XPM "files/xpm/you_win.xpm"
+# define LOSE_XPM "files/xpm/lose.xpm"
+# define WIN_XPM "files/xpm/win.xpm"
 
 /*
 ** Structures
