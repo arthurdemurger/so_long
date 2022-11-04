@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 15:24:12 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:32:37 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 /* Debug */
 
 # define ICI printf("ici\n");
+# define LEAKS system("leaks so_long");
 
 /* Keyboard */
 
@@ -51,7 +52,7 @@
 /* Sizing */
 
 # define BUFFER_SIZE 42
-# define SIZE_SQR 80
+# define SIZE_SQR 64
 
 /* Characters */
 
