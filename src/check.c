@@ -6,68 +6,49 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/01 23:54:33 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:19:07 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-char	**read_file(char *file)
+void	check_block(t_game *game, char **map, int x, int y)
 {
-	char	**split;
-	char	*join;
-	char	*tmp;
-	int		fd;
+	if (map[y][x] == ITEM)
+		game->check.nb_items++;
+	else if (map[y][x] == EXIT)
+		game->check.is_exit = YES;
+	if (x >= game->width || y >= game->height || x < 0 || y < 0
+		|| map[y][x] == WALL || map[y][x] == CHECKED || map[y][x] == EXIT)
+		return ;
+	map[y][x] = CHECKED;
+	check_block(game, map, x + 1, y);
+	check_block(game, map, x - 1, y);
+	check_block(game, map, x, y + 1);
+	check_block(game, map, x, y - 1);
+}
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_error("Open error.", NULL);
-	join = get_next_line(fd);
-	if (!join || join[0] == '\n')
-		ft_error("Invalid map.", NULL);
-	tmp = get_next_line(fd);
-	while (tmp)
-	{
-		if (tmp[0] == '\n')
-			ft_error("Invalid map", NULL);
-		join = gnl_strjoin(join, tmp);
-		free(tmp);
-		tmp = get_next_line(fd);
-	}
-	split = ft_split(join, '\n');
-	if (join)
-		free(join);
-	close(fd);
-	return (split);
+void	check_path(t_game *game)
+{
+	char	**tmp_map;
+
+	game->check.nb_items = 0;
+	game->check.is_exit = NO;
+	tmp_map = ft_dup_map(game->map);
+	check_block(game, tmp_map, game->player_pos.x, game->player_pos.y);
+	if (game->check.is_exit == NO || game->check.nb_items != game->nb_items)
+		ft_error("Invalid map. No valid path found.", game);
+	free_map(tmp_map);
 }
 
 void	check_pos(t_game *game)
 {
-	int	nb_player;
-	int	nb_exit;
-	int	nb_item;
-	int	i;
-	int	j;
-
-	nb_player = 0;
-	nb_exit = 0;
-	i = -1;
-	nb_item = 0;
-	while (game->map[++i])
-	{
-		j = -1;
-		while (game->map[i][++j])
-		{
-			if (game->map[i][j] == PLAYER)
-				nb_player++;
-			if (game->map[i][j] == EXIT)
-				nb_exit++;
-			if (game->map[i][j] == ITEM)
-				nb_item++;
-		}
-	}
-	if (!nb_player || !nb_exit || nb_player > 1 || nb_exit > 1 || !nb_item)
-		ft_error("Invalid map", game);
+	if (ft_count(game, PLAYER) != 1)
+		ft_error("There must be only one player on the map.", game);
+	else if (ft_count(game, EXIT) != 1)
+		ft_error("There must be only one exit on the map.", game);
+	else if (ft_count(game, ITEM) <= 0)
+		ft_error("There must be at least one item on the map.", game);
 }
 
 void	check_wall(t_game *game)
@@ -99,7 +80,7 @@ void	check_wall(t_game *game)
 
 void	check(int ac, char **av, t_game *game)
 {
-	game->is_mlx = NO;
+	game->check.is_mlx = NO;
 	if (ac != 2)
 		ft_error("Wrong number of arguments", NULL);
 	if (ft_strlen(ft_strstr(av[1], ".ber")) != 4)
@@ -107,6 +88,9 @@ void	check(int ac, char **av, t_game *game)
 	game->map = read_file(av[1]);
 	game->width = ft_strlen(game->map[0]);
 	game->height = ft_map_height(game->map);
+	game->player_pos = ft_find_pos(game, PLAYER);
+	game->nb_items = ft_count(game, ITEM);
 	check_pos(game);
 	check_wall(game);
+	check_path(game);
 }

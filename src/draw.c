@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 15:23:32 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:37:37 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_end(t_game *game, int type_end)
 
 	height = SIZE_SQR;
 	width = SIZE_SQR * 3;
-	game->is_game_over = YES;
+	game->check.is_game_over = YES;
 	mlx_clear_window(game->mlx, game->win);
 	if (type_end == WIN)
 	{
@@ -55,9 +55,9 @@ void	draw_end(t_game *game, int type_end)
 
 void	draw_block(t_game *game, int x, int y, char *file)
 {
-	game->map_sqr[y][x].img = mlx_xpm_file_to_image(game->mlx, file,
+	game->map_sqr[y][x] = mlx_xpm_file_to_image(game->mlx, file,
 			&game->sqr_size, &game->sqr_size);
-	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x].img,
+	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x],
 		x * SIZE_SQR, y * SIZE_SQR);
 }
 
@@ -89,6 +89,5 @@ void	draw_map(t_game *game)
 		while (game->map[i][++j])
 			draw_sqr(game, game->map[i][j], j, i);
 	}
-	mlx_string_put(game->mlx, game->win, 0, 0, 0xFFFFFF,
-		"Total number of moves : 0");
+	mlx_string_put(game->mlx, game->win, 0, 0, 0xFFFFFF, "Moves : 0");
 }

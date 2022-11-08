@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/11/02 15:14:08 by ademurge         ###   ########.fr        #
+#    Updated: 2022/11/08 16:08:15 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,15 @@ SRC			=	src/check.c \
 				src/exit.c \
 				src/game.c \
 				src/init.c \
-				src/main.c
+				src/main.c \
+				src/utils.c
 
 GNL			=	utils/gnl/get_next_line.c \
 				utils/gnl/get_next_line_utils.c
 
-LIBFT		=	utils/libft/ft_find_pos.c \
+LIBFT		=	utils/libft/ft_count.c \
+				utils/libft/ft_dup_map.c \
+				utils/libft/ft_find_pos.c \
 				utils/libft/ft_itoa.c \
 				utils/libft/ft_map_height.c \
 				utils/libft/ft_putchar.c \

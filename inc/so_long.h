@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/04 18:54:56 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:12:18 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define VALID_CHARACTERS "01EGPC"
 # define OPEN 1
 # define CLOSED 0
+# define CHECKED 2
 # define PLAYER 'P'
 # define WALL '1'
 # define EXIT 'E'
@@ -103,28 +104,27 @@ typedef struct s_coord
 	int	y;
 }	t_coord;
 
-typedef struct s_img
+typedef	struct s_check
 {
-	char	*addr;
-	int		bits_per_pix;
-	int		endian;
-	void	*img;
-	int		line_width;
-}	t_img;
+	int	nb_items;
+	int	is_exit;
+	int	is_game_over;
+	int	is_mlx;
+}	t_check;
 
 typedef struct s_game
 {
+	t_check		check;
 	t_coord		exit_pos;
 	int			exit_status;
 	void		*hide_str;
-	int			is_mlx;
-	int			is_game_over;
 	int			width;
-	t_img		**map_sqr;
+	void		***map_sqr;
 	char		**map;
 	void		*mlx;
-	int			nb_items;
+	int			items;
 	int			nb_move;
+	int			nb_items;
 	t_coord		player_pos;
 	int			sqr_size;
 	int			height;
@@ -139,24 +139,26 @@ void	check(int ac, char **av, t_game *game);
 void	controls(t_game *game);
 void	draw_background(t_game *game);
 void	draw_end(t_game *game, int type_end);
-void	draw_line(t_coord start, t_coord end, t_img img);
 void	draw_map(t_game *game);
 void	draw_sqr(t_game *game, char type, int x, int y);
 int		end_game(t_game *game, int type_exit);
+void	free_map(char **map);
 void	ft_error(char *s, t_game *game);
-t_coord	init_game(t_game *game);
+void	init_game(t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);
 void	move_or_not(t_game *game, int x, int y, char *direction);
 void	move_player(t_game *game, int new_x, int new_y, char *direction);
-void	pixel_put(t_img *img, int x, int y, int color);
 void	replace_sqr(t_game *game, int x, int y, char *xpm_file);
+char	**read_file(char *file);
 void	start_game(t_game *game);
 
 /*
 ** libft functions
 */
 
+int		ft_count(t_game *game, char block);
+char	**ft_dup_map(char **map);
 t_coord	ft_find_pos(t_game *game, char block);
 char	*ft_itoa(int n);
 int		ft_map_height(char **map);
