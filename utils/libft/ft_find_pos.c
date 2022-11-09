@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:57:05 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/02 15:15:25 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:57:08 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,13 @@ t_coord	ft_find_pos(t_game *game, char block)
 	int		j;
 
 	i = -1;
+	pos.x = -1;
 	while (game->map[++i])
 	{
 		j = -1;
 		while (game->map[i][++j])
-		{
 			if (game->map[i][j] == block)
-			{
-				pos.x = j;
-				pos.y = i;
-			}
-		}
+				pos = coord_to_pos(j, i);
 	}
 	return (pos);
 }

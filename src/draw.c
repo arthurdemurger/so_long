@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:19:42 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/08 16:37:37 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/08 23:46:28 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	draw_end(t_game *game, int type_end)
 	mlx_clear_window(game->mlx, game->win);
 	if (type_end == WIN)
 	{
+		ft_printf("*******   YOU WIN   *******\n");
 		end = mlx_xpm_file_to_image(game->mlx, WIN_XPM, &height, &width);
 		mlx_put_image_to_window(game->mlx, game->win, end, find_pos(game).x,
 			find_pos(game).y);
@@ -46,11 +47,13 @@ void	draw_end(t_game *game, int type_end)
 	}
 	else if (type_end == LOSE)
 	{
+		ft_printf("*******   YOU LOSE   *******\n");
 		end = mlx_xpm_file_to_image(game->mlx, LOSE_XPM, &height, &width);
 		mlx_put_image_to_window(game->mlx, game->win, end, find_pos(game).x,
 			find_pos(game).y);
 		mlx_destroy_image(game->mlx, end);
 	}
+	game->status = type_end;
 }
 
 void	draw_block(t_game *game, int x, int y, char *file)

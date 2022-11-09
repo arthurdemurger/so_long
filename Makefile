@@ -6,7 +6,7 @@
 #    By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 22:28:31 by ademurge          #+#    #+#              #
-#    Updated: 2022/11/08 16:08:15 by ademurge         ###   ########.fr        #
+#    Updated: 2022/11/09 01:09:16 by ademurge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC			=	src/check.c \
 				src/draw.c \
 				src/exit.c \
 				src/game.c \
+				src/ghost.c \
 				src/init.c \
 				src/main.c \
 				src/utils.c
@@ -62,7 +63,7 @@ FT_PRINTF	=	utils/ft_printf/ft_conversion.c \
 
 NAME		= so_long
 
-CFLAGS		= -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+CFLAGS		= -Wall -Wextra -Werror -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 all:		$(NAME)
 

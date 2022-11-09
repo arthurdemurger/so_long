@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/08 16:12:18 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:08:33 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 ** Libraries
 */
 
-# include <mlx.h>
-//# include "../mlx/mlx.h"
+//# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -78,6 +78,7 @@
 # define NO 0
 # define WIN 0
 # define LOSE 1
+# define PLAYING 2
 
 /* XPM files */
 
@@ -85,6 +86,10 @@
 # define PL_UP_XPM "files/xpm/pl_up.xpm"
 # define PL_LEFT_XPM "files/xpm/pl_left.xpm"
 # define PL_RIGHT_XPM "files/xpm/pl_right.xpm"
+# define GH_DOWN_XPM "files/xpm/gh_down.xpm"
+# define GH_UP_XPM "files/xpm/gh_up.xpm"
+# define GH_LEFT_XPM "files/xpm/gh_left.xpm"
+# define GH_RIGHT_XPM "files/xpm/gh_right.xpm"
 # define ITEM_XPM "files/xpm/item.xpm"
 # define OPEN_EXIT_XPM "files/xpm/open_exit.xpm"
 # define CLOSED_EXIT_XPM "files/xpm/closed_exit.xpm"
@@ -104,7 +109,7 @@ typedef struct s_coord
 	int	y;
 }	t_coord;
 
-typedef	struct s_check
+typedef struct s_check
 {
 	int	nb_items;
 	int	is_exit;
@@ -112,20 +117,29 @@ typedef	struct s_check
 	int	is_mlx;
 }	t_check;
 
+typedef struct s_ghost
+{
+	int		dir;
+	char	*xpm[4];
+	int		cur_xpm;
+}	t_ghost;
+
 typedef struct s_game
 {
+	int			count;
 	t_check		check;
 	t_coord		exit_pos;
 	int			exit_status;
+	t_ghost		ghost;
 	void		*hide_str;
 	int			width;
 	void		***map_sqr;
 	char		**map;
 	void		*mlx;
-	int			items;
 	int			nb_move;
 	int			nb_items;
 	t_coord		player_pos;
+	int			status;
 	int			sqr_size;
 	int			height;
 	void		*win;
@@ -136,6 +150,7 @@ typedef struct s_game
 */
 
 void	check(int ac, char **av, t_game *game);
+t_coord	coord_to_pos(int x, int y);
 void	controls(t_game *game);
 void	draw_background(t_game *game);
 void	draw_end(t_game *game, int type_end);
@@ -148,9 +163,11 @@ void	init_game(t_game *game);
 void	init_map_sqr(t_game *game);
 void	init_mlx(t_game *game);
 void	move_or_not(t_game *game, int x, int y, char *direction);
-void	move_player(t_game *game, int new_x, int new_y, char *direction);
-void	replace_sqr(t_game *game, int x, int y, char *xpm_file);
+void	move_player(t_game *game, t_coord pos, char *direction);
+void	put_img(t_game *game, int x, int y, char *file);
+void	replace_sqr(t_game *game, t_coord pos, t_coord new_pos, char *xpm_file);
 char	**read_file(char *file);
+int		sprites(t_game *game);
 void	start_game(t_game *game);
 
 /*

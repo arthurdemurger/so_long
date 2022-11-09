@@ -6,11 +6,30 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:45:56 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/08 13:46:50 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:28:05 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+t_coord	coord_to_pos(int x, int y)
+{
+	t_coord	pos;
+
+	pos.x = x;
+	pos.y = y;
+	return (pos);
+}
+
+void	put_img(t_game *game, int x, int y, char *file)
+{
+	int	*size;
+
+	size = &game->sqr_size;
+	game->map_sqr[y][x] = mlx_xpm_file_to_image(game->mlx, file, size, size);
+	mlx_put_image_to_window(game->mlx, game->win, game->map_sqr[y][x],
+		x * SIZE_SQR, y * SIZE_SQR);
+}
 
 char	**read_file(char *file)
 {
