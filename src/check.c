@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:32:10 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/08 16:19:07 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:24:27 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ void	check_block(t_game *game, char **map, int x, int y)
 void	check_path(t_game *game)
 {
 	char	**tmp_map;
+	t_coord	gh_pos;
 
 	game->check.nb_items = 0;
 	game->check.is_exit = NO;
 	tmp_map = ft_dup_map(game->map);
+	gh_pos = ft_find_pos(game, GHOST);
+	if (gh_pos.x != -1 && game->map[gh_pos.y][gh_pos.x - 1] == WALL
+		&&  game->map[gh_pos.y][gh_pos.x + 1] == WALL)
+		tmp_map[gh_pos.y][gh_pos.x] = WALL;
+	else if (gh_pos.x != - 1)
+		tmp_map[gh_pos.y][gh_pos.x] = BACKGROUND;
 	check_block(game, tmp_map, game->player_pos.x, game->player_pos.y);
 	if (game->check.is_exit == NO || game->check.nb_items != game->nb_items)
 		ft_error("Invalid map. No valid path found.", game);
@@ -49,6 +56,8 @@ void	check_pos(t_game *game)
 		ft_error("There must be only one exit on the map.", game);
 	else if (ft_count(game, ITEM) <= 0)
 		ft_error("There must be at least one item on the map.", game);
+	else if (ft_count(game, GHOST) > 1)
+		ft_error("There must be maximum one ghost on the map.", game);
 }
 
 void	check_wall(t_game *game)
