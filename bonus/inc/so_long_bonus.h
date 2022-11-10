@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:03:45 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/09 01:08:33 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:54:25 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
+#ifndef SO_LONG_BONUS_H
 
-# define SO_LONG_H
+# define SO_LONG_BONUS_H
 
 /*
 ** Libraries
 */
 
-//# include <mlx.h>
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>

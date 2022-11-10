@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:33 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/09 01:04:32 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:50:08 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ void	move_or_not(t_game *game, int x, int y, char *direction)
 	}
 	else if (game->map[y][x] == EXIT && game->exit_status == OPEN)
 		draw_end(game, WIN);
-	else if (game->map[y][x] == GHOST)
-		draw_end(game, LOSE);
 }
 
 void	start_game(t_game *game)

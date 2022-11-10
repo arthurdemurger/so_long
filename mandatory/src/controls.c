@@ -6,7 +6,7 @@
 /*   By: ademurge <ademurge@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:17:03 by ademurge          #+#    #+#             */
-/*   Updated: 2022/11/09 01:00:03 by ademurge         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:48:29 by ademurge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,5 @@ void	controls(t_game *game)
 	mlx_hook(game->win, KEYPRESS, 0, keypress, game);
 	mlx_hook(game->win, DESTROY_BUTTON, 0, end_game, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->map, 0, 0);
-	if (ft_find_pos(game, GHOST).x != -1)
-		mlx_loop_hook(game->mlx, sprites, game);
 	mlx_loop(game->mlx);
 }
